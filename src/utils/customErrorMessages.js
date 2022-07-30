@@ -2,6 +2,9 @@ const customErrorList = {
   REQUIRED_FIELDS: { message: 'Some required fields are missing', code: 400 },
   INVALID_FIELDS: { message: 'Invalid fields', code: 400 },
   USER_ALREADY_REGISTERED: { message: 'User already registered', code: 409 },
+  TOKEN_NOT_FOUND: { message: 'Token not found', code: 401 },
+  INVALID_TOKEN: { message: 'Expired or invalid token', code: 401 },
+  USER_NOT_FOUND: { message: 'User does not exist', code: 404 },
 };
 
 module.exports = customErrorList;

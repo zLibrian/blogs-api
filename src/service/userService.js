@@ -9,6 +9,14 @@ const userService = {
     const encodedUser = token.encoder(createdUser);
     return encodedUser;
   },
+  list: async () => {
+    const users = await model.User.findAll({ attributes: { exclude: ['password'] } });
+    return users;
+  },
+  getById: async (id) => {
+    const user = await model.User.findByPk(id, { attributes: { exclude: ['password'] } });
+    return user;
+  },
 };
 
 module.exports = userService;

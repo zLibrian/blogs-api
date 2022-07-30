@@ -7,7 +7,7 @@ const token = {
     return encoded;
   },
   decoder: async (encoded) => {
-    const decoded = JWT.verify(encoded, SECRET);
+    const decoded = JWT.decode(encoded, SECRET);
     return decoded;
   },
 };
