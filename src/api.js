@@ -1,7 +1,10 @@
 const express = require('express');
-const handleError = require('./middleware/handleError');
 require('express-async-errors');
-const loginRouter = require('./router/login');
+
+const loginRouter = require('./router/loginRouter');
+const userRouter = require('./router/userRouter');
+
+const handleError = require('./middleware/handleError');
 
 // ...
 
@@ -9,6 +12,7 @@ const app = express();
 
 app.use(express.json());
 app.use('/login', loginRouter);
+app.use('/user', userRouter);
 app.use(handleError);
 
 // ...
