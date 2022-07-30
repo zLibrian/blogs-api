@@ -5,6 +5,10 @@ const categoryService = {
     const created = await model.Category.create(name);
     return created;
   },
+  list: async () => {
+    const categories = await model.Category.findAll();
+    return categories;
+  },
 };
 
 module.exports = categoryService;
