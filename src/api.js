@@ -5,6 +5,7 @@ const loginRouter = require('./router/loginRouter');
 const userRouter = require('./router/userRouter');
 
 const handleError = require('./middleware/handleError');
+const categoryRouter = require('./router/categoryRouter');
 
 // ...
 
@@ -13,6 +14,7 @@ const app = express();
 app.use(express.json());
 app.use('/login', loginRouter);
 app.use('/user', userRouter);
+app.use('/categories', categoryRouter);
 app.use(handleError);
 
 // ...
