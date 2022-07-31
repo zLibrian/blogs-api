@@ -13,6 +13,9 @@ const User = (sequelize, DataTypes) => {
     password: { type: DataTypes.STRING, allowNull: false },
     image: { type: DataTypes.STRING, allowNull: false },
   }, { timestamps: false });
+  userModel.associate = (models) => {
+    userModel.hasMany(models.BlogPost, { foreignKey: 'userId', as: 'blogposts' })
+  }
   return userModel;
 };
 
