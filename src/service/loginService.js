@@ -2,7 +2,7 @@ const model = require('../database/models');
 const token = require('../utils/handleToken');
 
 const loginService = async (email) => {
-  const user = await model.User.findOne({ where: { email } });
+  const user = await model.User.findOne({ where: { email }, raw: true });
   if (!user) throw new Error('INVALID_FIELDS');
   const encoded = await token.encoder(user);
   return encoded;

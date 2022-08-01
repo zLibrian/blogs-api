@@ -5,6 +5,8 @@ const customErrorList = {
   TOKEN_NOT_FOUND: { message: 'Token not found', code: 401 },
   INVALID_TOKEN: { message: 'Expired or invalid token', code: 401 },
   USER_NOT_FOUND: { message: 'User does not exist', code: 404 },
+  CATEGORY_NOT_FOUND: { message: '"categoryIds" not found', code: 400 },
+  MISSING_FIELDS: { message: 'Some required fields are missing', code: 400 },
 };
 
 module.exports = customErrorList;

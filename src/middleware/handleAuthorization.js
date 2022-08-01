@@ -4,8 +4,9 @@ const token = require('../utils/handleToken');
 const handleAuthorization = async (req, res, next) => {
   const { authorization: userToken } = req.headers;
   if (!userToken) throw new Error('TOKEN_NOT_FOUND');
-  const isTokenValid = await token.decoder(userToken);
-  if (!isTokenValid) throw new Error('INVALID_TOKEN');
+  const decodedUser = await token.decoder(userToken);
+  if (!decodedUser) throw new Error('INVALID_TOKEN');
+  req.user = decodedUser.payload;
   return next();
 };
 
