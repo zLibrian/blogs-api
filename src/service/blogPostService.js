@@ -55,6 +55,12 @@ const blogPostService = {
     );
     return postUpdated;
   },
+  remove: async (id, userId) => {
+    const isUserBlogPostOwner = await blogPostService.getById(id);
+    if (isUserBlogPostOwner.dataValues.userId !== userId) throw new Error('UNAUTHORIZED_USER');
+    const deleted = await models.BlogPost.destroy({ where: { id, userId } });
+    return deleted;
+  },
 };
 
 module.exports = blogPostService;

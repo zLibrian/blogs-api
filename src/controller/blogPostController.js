@@ -26,6 +26,12 @@ const blogPostController = {
     const postUpdated = await blogPostService.getById(id);
     return res.status(200).json(postUpdated);
   },
+  remove: async (req, res, _next) => {
+    const id = parseInt(req.params.id, 10);
+    const userId = req.user.id;
+    await blogPostService.remove(id, userId);
+    return res.status(204).end();
+  },
 };
 
 module.exports = blogPostController;
