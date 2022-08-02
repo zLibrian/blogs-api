@@ -9,8 +9,12 @@ const blogPostController = {
     return res.status(201).json(newPost);
   },
   list: async (req, res, _next) => {
-    const { id } = req.user;
-    const userPosts = await blogPostService.list(id);
+    const userPosts = await blogPostService.list();
+    return res.status(200).json(userPosts);
+  },
+  getById: async (req, res, _next) => {
+    const id = parseInt(req.params.id, 10);
+    const userPosts = await blogPostService.getById(id);
     return res.status(200).json(userPosts);
   },
 };

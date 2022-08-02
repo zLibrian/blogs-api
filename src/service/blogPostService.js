@@ -37,6 +37,16 @@ const blogPostService = {
     );
     return userPosts;
   },
+  getById: async (id) => {
+    const userPost = await models.BlogPost.findByPk(id, {
+      include: [
+        { model: models.User, as: 'user', attributes: { exclude: ['password'] } },
+        { model: models.Category, as: 'categories', through: { attributes: [] } },
+      ],
+    });
+    if (!userPost) throw new Error('POST_DOES_NOT_EXIST');
+    return userPost;
+  },
 };
 
 module.exports = blogPostService;
