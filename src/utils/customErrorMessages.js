@@ -8,6 +8,7 @@ const customErrorList = {
   CATEGORY_NOT_FOUND: { message: '"categoryIds" not found', code: 400 },
   MISSING_FIELDS: { message: 'Some required fields are missing', code: 400 },
   POST_DOES_NOT_EXIST: { message: 'Post does not exist', code: 404 },
+  UNAUTHORIZED_USER: { message: 'Unauthorized user', code: 401 },
 };
 
 module.exports = customErrorList;

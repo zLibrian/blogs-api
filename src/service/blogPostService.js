@@ -47,6 +47,14 @@ const blogPostService = {
     if (!userPost) throw new Error('POST_DOES_NOT_EXIST');
     return userPost;
   },
+  update: async (title, content, id, userId) => {
+    const isUserBlogPostOwner = await blogPostService.getById(id);
+    if (isUserBlogPostOwner.dataValues.userId !== userId) throw new Error('UNAUTHORIZED_USER');
+    const [postUpdated] = await models.BlogPost.update(
+      { title, content }, { where: { id, userId } },
+    );
+    return postUpdated;
+  },
 };
 
 module.exports = blogPostService;

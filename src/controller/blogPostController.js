@@ -17,6 +17,15 @@ const blogPostController = {
     const userPosts = await blogPostService.getById(id);
     return res.status(200).json(userPosts);
   },
+  update: async (req, res, _next) => {
+    const id = parseInt(req.params.id, 10);
+    const userId = req.user.id;
+    const { title, content } = req.body;
+    if (!title || !content) throw new Error('MISSING_FIELDS');
+    await blogPostService.update(title, content, id, userId);
+    const postUpdated = await blogPostService.getById(id);
+    return res.status(200).json(postUpdated);
+  },
 };
 
 module.exports = blogPostController;
