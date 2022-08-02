@@ -26,6 +26,17 @@ const blogPostService = {
     });
     return models.BlogPost.findOne({ where: { id } });
   },
+  list: async () => {
+    const userPosts = await models.BlogPost.findAll(
+      {
+        include: [
+          { model: models.User, as: 'user', attributes: { exclude: ['password'] } },
+          { model: models.Category, as: 'categories', through: { attributes: [] } },
+        ],
+      },
+    );
+    return userPosts;
+  },
 };
 
 module.exports = blogPostService;
