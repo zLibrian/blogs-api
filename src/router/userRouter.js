@@ -9,5 +9,6 @@ const userRouter = express.Router();
 userRouter.post('/', joiValidator(userSchema), userController.create);
 userRouter.get('/:id', handleAuthorization, userController.getById);
 userRouter.get('/', handleAuthorization, userController.list);
+userRouter.delete('/:id', handleAuthorization, userController.remove);
 
 module.exports = userRouter;

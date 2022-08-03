@@ -17,6 +17,10 @@ const userService = {
     const user = await model.User.findByPk(id, { attributes: { exclude: ['password'] } });
     return user;
   },
+  remove: async (id) => {
+    const deletedUser = await model.User.destroy({ where: { id } });
+    return deletedUser;
+  },
 };
 
 module.exports = userService;
