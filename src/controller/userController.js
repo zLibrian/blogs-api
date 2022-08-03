@@ -16,7 +16,7 @@ const userController = {
     return res.status(200).json(user);
   },
   remove: async (req, res, _next) => {
-    const id = req.user;
+    const { id } = req.user;
     await userService.remove(id);
     return res.status(204).end();
   },
