@@ -5,6 +5,7 @@ const handleAuthorization = require('../middleware/handleAuthorization');
 const blogPostRouter = express.Router();
 
 blogPostRouter.post('/', handleAuthorization, blogPostController.create);
+blogPostRouter.get('/search', handleAuthorization, blogPostController.getByTerm);
 blogPostRouter.get('/:id', handleAuthorization, blogPostController.getById);
 blogPostRouter.put('/:id', handleAuthorization, blogPostController.update);
 blogPostRouter.delete('/:id', handleAuthorization, blogPostController.remove);

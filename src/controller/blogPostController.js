@@ -32,6 +32,11 @@ const blogPostController = {
     await blogPostService.remove(id, userId);
     return res.status(204).end();
   },
+  getByTerm: async (req, res, _next) => {
+    const term = req.query.q;
+    const blogPosts = await blogPostService.getByTerm(term);
+    return res.status(200).json(blogPosts);
+  },
 };
 
 module.exports = blogPostController;

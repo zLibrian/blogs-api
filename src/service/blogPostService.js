@@ -61,6 +61,22 @@ const blogPostService = {
     const deleted = await models.BlogPost.destroy({ where: { id, userId } });
     return deleted;
   },
+  getByTerm: async (term) => {
+    const like = `%${term}%`;
+    const blogPosts = await models.BlogPost.findAll({
+      where: {
+        [Op.or]: {
+          content: { [Op.like]: like },
+          title: { [Op.like]: like },
+        },
+      },
+      include: [
+        { model: models.User, as: 'user', attributes: { exclude: ['password'] } },
+        { model: models.Category, as: 'categories', through: { attributes: [] } },
+      ],
+    });
+    return blogPosts;
+  },
 };
 
 module.exports = blogPostService;
